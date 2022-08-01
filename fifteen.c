@@ -8,11 +8,6 @@ int d;
 int cap;
 int max;
 
-
-void init(void);
-void draw(void);
-
-
 int board[31][31];
 
 int tmp;
