@@ -10,5 +10,8 @@ cap (for example 15 md sum for 4x4 puzzle)
 max (for example 1000000 scrambles to check)
 
 
+example:
+smart.exe 4 15 1000000
+
 compliation from source for fast search:
 gcc fifteen.c -o smart -O3
