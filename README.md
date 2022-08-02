@@ -14,4 +14,4 @@ example:
 smart.exe 4 15 1000000
 
 compliation from source for fast search:
-gcc fifteen.c -o smart -O3
+gcc fifteen.c mtwister.c -o smart -O3
