@@ -7,7 +7,7 @@
 
 int d;
 int cap;
-long int max;
+unsigned long long int max;
 
 
 int board[31][31];
@@ -17,7 +17,7 @@ int newX;
 int newY;
 int dmoves;
 int rmoves;
-long int globali;
+unsigned long long int globali;
 int h;
 int w;
 int mdsum;
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 {
     sscanf(argv[1],"%d",&d);
     sscanf(argv[2],"%d",&cap);
-    sscanf(argv[3],"%ld",&max);
+    sscanf(argv[3],"%llu",&max);
 
     r = seedRand(time(NULL));
     total = d * d - 1;
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
         init();
         check_md();
         if ((globali % 10000000) == 0){
-            printf("%d scrambles checked...\n", globali);
+            printf("%llu scrambles checked...\n", globali);
         }
         if (mdsum < cap){
             draw();
@@ -157,5 +157,5 @@ void draw(void)
         }
 
     }
-    printf("// mdsum = %d//id = %ld\n", mdsum, globali);
+    printf("// mdsum = %d//id = %%llu\n", mdsum, globali);
 }
