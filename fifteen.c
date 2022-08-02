@@ -157,5 +157,5 @@ void draw(void)
         }
 
     }
-    printf("// mdsum = %d//id = %%llu\n", mdsum, globali);
+    printf("// mdsum = %d//id = %llu\n", mdsum, globali);
 }
