@@ -3,19 +3,21 @@
 #include <unistd.h>
 #include <time.h>
 #include <math.h>
+#include "mtwister.h"
 
 int d;
 int cap;
-int max;
+long int max;
+
 
 int board[31][31];
-
+MTRand r;
 int tmp;
 int newX;
 int newY;
 int dmoves;
 int rmoves;
-int globali;
+long int globali;
 int h;
 int w;
 int mdsum;
@@ -25,6 +27,7 @@ int current_md=0;
 int number=0;
 int total;
 
+int randomInt(int, int);
 void init(void);
 void draw(void);
 void randomize(void);
@@ -34,9 +37,9 @@ int main(int argc, char *argv[])
 {
     sscanf(argv[1],"%d",&d);
     sscanf(argv[2],"%d",&cap);
-    sscanf(argv[3],"%d",&max);
+    sscanf(argv[3],"%ld",&max);
 
-    srand(time(NULL));
+    r = seedRand(time(NULL));
     total = d * d - 1;
     globali = 0;
     for (globali = 1; globali <= max; globali++){
@@ -74,6 +77,11 @@ void init(void)
     randomize();
 }
 
+int randomInt(int min, int max)
+{
+    return (min + floor((max-min) * genRand(&r)));
+}
+
 void randomize(void)
 {
     int flat_board[total];
@@ -82,8 +90,7 @@ void randomize(void)
     }
     int foo;
     for (int counter = total-1; counter > 0; counter--){
-        int randt = ((double)rand() / (double)((unsigned)RAND_MAX + 1)) * (counter + 1);
-        //printf("%d ",randt);
+        int randt = genRand(&r) * (counter + 1);
         foo = flat_board[counter];
         flat_board[counter] = flat_board[randt];
         flat_board[randt] = foo;
@@ -115,8 +122,8 @@ void randomize(void)
     }
     int currentY = d-1;
     int currentX = d-1;
-    rmoves = rand() % d;
-    dmoves = rand() % d;
+    rmoves = randomInt(0, d);
+    dmoves = randomInt(0, d);
 
     for (int i = 1; i <= rmoves; i++){
         newX = currentX - 1;
@@ -150,5 +157,5 @@ void draw(void)
         }
 
     }
-    printf("// mdsum = %d//id = %d\n", mdsum, globali);
+    printf("// mdsum = %d//id = %ld\n", mdsum, globali);
 }
